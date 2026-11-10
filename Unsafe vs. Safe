@@ -1,0 +1,16 @@
+=== UNSAFE CONVERSIONS (Vulnerable) ===
+[Int -> Short] Original int: 70000 | Converted short: -31072 (Overflow/Truncation)
+[Signed -> Unsigned] Original: -15 | Converted unsigned: 4294967281 (Sign bit interpretation error)
+[Float -> Int] Original float: 3.402824e+38 | Converted int: -2147483648 (Overflow/Undefined)
+[String -> Numeric] Input string: "999999999999999" | atoi result: 2147483647 (Silent overflow)
+
+----------------------------------------
+=== SAFE CONVERSIONS (Validated) ===
+[Safe Error] Int 70000 out of range for short [-32768, 32767].
+Int to Short success: 300
+[Safe Error] Negative value -15 cannot be safely cast to unsigned int.
+Successfully rejected negative signed to unsigned conversion.
+Float to Int success: 42 (truncated cleanly)
+String to Numeric success: 12345
+[Safe Error] String conversion range error.
+Successfully caught out-of-range string numeric overflow.
